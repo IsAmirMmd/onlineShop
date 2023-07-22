@@ -4,9 +4,9 @@ import Navigation from "../components/Navigation/Navigation";
 const Layout = ({ children }) => {
   return (
     <div>
-      <header>Navigation</header>
+      <Navigation />
       {children}
-      <footer>Footer</footer>
+      <Footer />
     </div>
   );
 };
