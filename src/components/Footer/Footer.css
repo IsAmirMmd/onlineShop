@@ -1,0 +1,10 @@
+.mainFooter {
+  margin-top: auto;
+  width: 100%;
+  height: 350px;
+  color: blueviolet;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background: url("../../assets/images/footer.jpg");
+}

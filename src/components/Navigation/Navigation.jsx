@@ -1,4 +1,4 @@
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 const Navigation = () => {
@@ -8,12 +8,17 @@ const Navigation = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/">home</NavLink>
+              <NavLink to="/" activeclassname="activeLink" exact="true">
+                home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/cart">cart</NavLink>
+              <NavLink to="/cart" activeclassname="activeLink">
+                cart
+              </NavLink>
             </li>
           </ul>
+          <p>IsAmirMmd</p>
         </nav>
       </header>
     </BrowserRouter>

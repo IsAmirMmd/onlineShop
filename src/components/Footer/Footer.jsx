@@ -1,5 +1,7 @@
+import "./Footer.css";
+
 const Footer = () => {
-  return <div>footer</div>;
+  return <footer className="mainFooter">footer page</footer>;
 };
 
 export default Footer;

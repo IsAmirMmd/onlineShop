@@ -1,0 +1,30 @@
+.mainNav {
+  background-color: #ede9fe;
+  width: 100%;
+  height: 70px;
+}
+.mainNav nav {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.mainNav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.mainNav a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+.mainNav a.active {
+  color: #6d28d9;
+}
+.mainNav a:hover {
+  color: cadetblue;
+}
