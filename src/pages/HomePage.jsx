@@ -7,8 +7,16 @@ const HomePage = () => {
       <div className="product-container">
         {products.map((p) => (
           <div className="product-item" key={p.id}>
-            <img src={p.image} alt="item" style={{width:"250px"}} />
-            <p>{p.name}</p>
+            <div className="product-image">
+              <img src={p.image} alt={p.image} />
+            </div>
+            <div className="product-details">
+              <p>{p.name}</p>
+              <p className="product--price">{p.price}</p>
+            </div>
+            <div className="product-btn">
+              <button className="btn">add to cart</button>
+            </div>
           </div>
         ))}
       </div>

@@ -18,3 +18,55 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.product-container {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  max-width: 1440px;
+  width: 90vw;
+  margin: 0 auto;
+}
+.product-item {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.product-image {
+  height: 200px;
+}
+.product-image img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+}
+.product-details {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.product-btn {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.product-btn .btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: #ede9fe;
+  border-radius: 5px;
+}
+.product--price::after {
+  content: "$";
+  color: green;
+  padding-left: 0.15rem;
+  font-size: 0.9rem;
+}
