@@ -1,7 +1,12 @@
+import { useCartAction } from "../Context/CartContext";
 import { products } from "../data/data";
 import Layout from "../Layout/Layout";
 
 const HomePage = () => {
+  const dispatch = useCartAction();
+  const addProductHandler = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
   return (
     <Layout>
       <div className="product-container">
@@ -15,7 +20,9 @@ const HomePage = () => {
               <p className="product--price">{p.price}</p>
             </div>
             <div className="product-btn">
-              <button className="btn">add to cart</button>
+              <button className="btn" onClick={() => addProductHandler(p)}>
+                add to cart
+              </button>
             </div>
           </div>
         ))}
