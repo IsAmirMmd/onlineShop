@@ -1,10 +1,20 @@
-import { useCart } from "../Context/CartContext";
+import { useCart, useCartAction } from "../Context/CartContext";
 import Layout from "../Layout/Layout";
 import trashImage from "../assets/images/trash.svg";
 
 const CartPage = () => {
   // items in cart
   const { cart } = useCart();
+  const dispatch = useCartAction();
+
+  const incHandler = (cartItem) => {
+    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+  };
+
+  const decrementHandler = (cartItem) => {
+    dispatch({ type: "DECREMENT_AMOUNT", payload: cartItem });
+  };
+
   // cart page visibility
   function renderCartItem() {
     if (!cart.length)
@@ -24,9 +34,11 @@ const CartPage = () => {
           </div>
           <div className="cart-about">
             <div class="cart-box__item--amount">
-              <span class="cart--plus">+</span>
+              <span class="cart--plus" onClick={() => incHandler(item)}>
+                +
+              </span>
               <span class="cart--item-amount">{item.quantity}</span>
-              <span class="cart--trash">
+              <span class="cart--trash" onClick={() => decrementHandler(item)}>
                 <img src={trashImage} alt="trash green" />
               </span>
             </div>
@@ -75,7 +87,9 @@ const CartPage = () => {
                 <span class="price-unit">۵۴۲٬۰۰۰</span>
               </div>
             </div>
-          ) : ""}
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </Layout>
