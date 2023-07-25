@@ -1,14 +1,13 @@
 import { useCart } from "../Context/CartContext";
 import Layout from "../Layout/Layout";
-
-let cartPageInnerHtml = "";
+import trashImage from "../assets/images/trash.svg";
 
 const CartPage = () => {
   // items in cart
   const { cart } = useCart();
   // cart page visibility
   function renderCartItem() {
-    if (cart.length === 0)
+    if (!cart.length)
       return (
         <main>
           <h2>No product In Cart !</h2>
@@ -16,14 +15,71 @@ const CartPage = () => {
       );
     else {
       return cart.map((item) => (
-        <div key={item.id} className="cart--item">
-          <p>{item.name}</p>
+        <div class="cart-box__item" key={item.id}>
+          <div class="cart-box__item--image">
+            <img src={item.image} alt="" />
+          </div>
+          <div class="cart-box--pc--info">
+            <p class="cart-box--pc--info__name">{item.name}</p>
+          </div>
+          <div className="cart-about">
+            <div class="cart-box__item--amount">
+              <span class="cart--plus">+</span>
+              <span class="cart--item-amount">{item.quantity}</span>
+              <span class="cart--trash">
+                <img src={trashImage} alt="trash green" />
+              </span>
+            </div>
+            <div class="cart-box--pc__price--final price-unit">
+              {item.offPrice * item.quantity}
+            </div>
+          </div>
         </div>
       ));
     }
   }
   // return
-  return <Layout>{renderCartItem()}</Layout>;
+  return (
+    <Layout>
+      <div className="cart-container">
+        <div className="cart-box">
+          <div class="cart-box__list">{renderCartItem()}</div>
+          {cart.length && (
+            <div class="cart-box__price">
+              <div class="cart-box__amount only-desktop">
+                <div>
+                  <span class="cart-name">Cart</span>
+                  <span class="cart-count">({cart.length})</span>
+                </div>
+                <div>
+                  <img src={trashImage} alt="" />
+                </div>
+              </div>
+              <div class="cart-box__price--discout">
+                <p>تخفیف محصولات</p>
+                <span class="price-unit">۶۳٬۰۰۰</span>
+              </div>
+              <div class="cart-box__price--post">
+                <div>
+                  <p>هزینه ارسال</p>
+                  <span class="price-unit">۰</span>
+                </div>
+                <div>
+                  <img src="../src/data/warning-2.svg" alt="" />
+                  هزینه ارسال در ادامه بر اساس آدرس، زمان و نحوه ارسال انتخابی
+                  شما محاسبه و به این مبلغ اضافه خواهد شد.
+                </div>
+              </div>
+              <div class="cart-box__price--all">
+                <p>مبلغ قابل پرداخت</p>
+                <span class="price-unit">۵۴۲٬۰۰۰</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
 };
 
 export default CartPage;
