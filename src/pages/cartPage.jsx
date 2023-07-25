@@ -5,6 +5,7 @@ import trashImage from "../assets/images/trash.svg";
 const CartPage = () => {
   // items in cart
   const { cart } = useCart();
+  const { total } = useCart();
   const dispatch = useCartAction();
 
   const incHandler = (cartItem) => {
@@ -68,12 +69,12 @@ const CartPage = () => {
                 </div>
               </div>
               <div class="cart-box__price--discout">
-                <p>تخفیف محصولات</p>
+                <p> off sale</p>
                 <span class="price-unit">۶۳٬۰۰۰</span>
               </div>
               <div class="cart-box__price--post">
                 <div>
-                  <p>هزینه ارسال</p>
+                  <p>delivery price</p>
                   <span class="price-unit">۰</span>
                 </div>
                 <div>
@@ -83,8 +84,8 @@ const CartPage = () => {
                 </div>
               </div>
               <div class="cart-box__price--all">
-                <p>مبلغ قابل پرداخت</p>
-                <span class="price-unit">۵۴۲٬۰۰۰</span>
+                <p>total Price </p>
+                <span class="price-unit">{total}</span>
               </div>
             </div>
           ) : (
