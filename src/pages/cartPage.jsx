@@ -6,6 +6,7 @@ const CartPage = () => {
   // items in cart
   const { cart } = useCart();
   const { total } = useCart();
+  const { off } = useCart();
   const dispatch = useCartAction();
 
   const incHandler = (cartItem) => {
@@ -70,7 +71,7 @@ const CartPage = () => {
               </div>
               <div class="cart-box__price--discout">
                 <p> off sale</p>
-                <span class="price-unit">۶۳٬۰۰۰</span>
+                <span class="price-unit">{off}</span>
               </div>
               <div class="cart-box__price--post">
                 <div>
@@ -79,8 +80,8 @@ const CartPage = () => {
                 </div>
                 <div>
                   <img src="../src/data/warning-2.svg" alt="" />
-                  هزینه ارسال در ادامه بر اساس آدرس، زمان و نحوه ارسال انتخابی
-                  شما محاسبه و به این مبلغ اضافه خواهد شد.
+                  the price is based on your location that will be calculated
+                  after adding address.
                 </div>
               </div>
               <div class="cart-box__price--all">

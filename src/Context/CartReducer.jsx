@@ -15,6 +15,7 @@ const CartReducer = (state, action) => {
         ...state,
         cart: updatedCart,
         total: state.total + action.payload.offPrice,
+        off: state.off + (action.payload.price - action.payload.offPrice),
       };
     }
     case "DECREMENT_AMOUNT": {
@@ -30,6 +31,7 @@ const CartReducer = (state, action) => {
           ...state,
           cart: newUpdatedCart,
           total: state.total - action.payload.offPrice,
+          off: state.off - (action.payload.price - action.payload.offPrice),
         };
       } else {
         const updatedItem = { ...updatedCart[index] };
@@ -40,6 +42,7 @@ const CartReducer = (state, action) => {
         ...state,
         cart: updatedCart,
         total: state.total - action.payload.offPrice,
+        off: state.off - (action.payload.price - action.payload.offPrice),
       };
     }
     default:

@@ -7,6 +7,7 @@ const CartContextDispatcher = createContext();
 const initialState = {
   cart: [],
   total: 0,
+  off: 0,
 };
 
 const CartProvider = ({ children }) => {
