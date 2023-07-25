@@ -27,24 +27,27 @@ const CartPage = () => {
       );
     else {
       return cart.map((item) => (
-        <div class="cart-box__item" key={item.id}>
-          <div class="cart-box__item--image">
+        <div className="cart-box__item" key={item.id}>
+          <div className="cart-box__item--image">
             <img src={item.image} alt="" />
           </div>
-          <div class="cart-box--pc--info">
-            <p class="cart-box--pc--info__name">{item.name}</p>
+          <div className="cart-box--pc--info">
+            <p className="cart-box--pc--info__name">{item.name}</p>
           </div>
           <div className="cart-about">
-            <div class="cart-box__item--amount">
-              <span class="cart--plus" onClick={() => incHandler(item)}>
+            <div className="cart-box__item--amount">
+              <span className="cart--plus" onClick={() => incHandler(item)}>
                 +
               </span>
-              <span class="cart--item-amount">{item.quantity}</span>
-              <span class="cart--trash" onClick={() => decrementHandler(item)}>
+              <span className="cart--item-amount">{item.quantity}</span>
+              <span
+                className="cart--trash"
+                onClick={() => decrementHandler(item)}
+              >
                 <img src={trashImage} alt="trash green" />
               </span>
             </div>
-            <div class="cart-box--pc__price--final price-unit">
+            <div className="cart-box--pc__price--final price-unit">
               {item.offPrice * item.quantity}
             </div>
           </div>
@@ -57,26 +60,26 @@ const CartPage = () => {
     <Layout>
       <div className="cart-container">
         <div className="cart-box">
-          <div class="cart-box__list">{renderCartItem()}</div>
+          <div className="cart-box__list">{renderCartItem()}</div>
           {cart.length ? (
-            <div class="cart-box__price">
-              <div class="cart-box__amount only-desktop">
+            <div className="cart-box__price">
+              <div className="cart-box__amount only-desktop">
                 <div>
-                  <span class="cart-name">Cart</span>
-                  <span class="cart-count">({cart.length})</span>
+                  <span className="cart-name">Cart</span>
+                  <span className="cart-count">({cart.length})</span>
                 </div>
                 <div>
                   <img src={trashImage} alt="" />
                 </div>
               </div>
-              <div class="cart-box__price--discout">
+              <div className="cart-box__price--discout">
                 <p> off sale</p>
-                <span class="price-unit">{off}</span>
+                <span className="price-unit">{off}</span>
               </div>
-              <div class="cart-box__price--post">
+              <div className="cart-box__price--post">
                 <div>
                   <p>delivery price</p>
-                  <span class="price-unit">۰</span>
+                  <span className="price-unit">۰</span>
                 </div>
                 <div>
                   <img src="../src/data/warning-2.svg" alt="" />
@@ -84,9 +87,9 @@ const CartPage = () => {
                   after adding address.
                 </div>
               </div>
-              <div class="cart-box__price--all">
+              <div className="cart-box__price--all">
                 <p>total Price </p>
-                <span class="price-unit">{total}</span>
+                <span className="price-unit">{total}</span>
               </div>
             </div>
           ) : (
