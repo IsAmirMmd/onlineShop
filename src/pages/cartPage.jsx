@@ -44,7 +44,7 @@ const CartPage = () => {
       <div className="cart-container">
         <div className="cart-box">
           <div class="cart-box__list">{renderCartItem()}</div>
-          {cart.length && (
+          {cart.length ? (
             <div class="cart-box__price">
               <div class="cart-box__amount only-desktop">
                 <div>
@@ -75,7 +75,7 @@ const CartPage = () => {
                 <span class="price-unit">۵۴۲٬۰۰۰</span>
               </div>
             </div>
-          )}
+          ) : ""}
         </div>
       </div>
     </Layout>
