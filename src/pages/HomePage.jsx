@@ -1,10 +1,10 @@
-import { useCartAction } from "../Context/CartContext";
+import { useCart, useCartAction } from "../Context/CartContext";
 import { products } from "../data/data";
 import Layout from "../Layout/Layout";
-
 const HomePage = () => {
+  const { cart } = useCart();
   const dispatch = useCartAction();
-  const addProductHandler = (product) => {
+  const addProductHandler = (e, product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (
@@ -20,8 +20,10 @@ const HomePage = () => {
               <p className="product--price">{p.price}</p>
             </div>
             <div className="product-btn">
-              <button className="btn" onClick={() => addProductHandler(p)}>
-                add to cart
+              <button className="btn" onClick={(e) => addProductHandler(e, p)}>
+                {cart.find((item) => item.id === p.id)
+                  ? "in cart"
+                  : "add to cart"}
               </button>
             </div>
           </div>

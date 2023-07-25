@@ -36,13 +36,18 @@ const CartPage = () => {
           </div>
           <div className="cart-about">
             <div className="cart-box__item--amount">
-              <span className="cart--plus" onClick={() => incHandler(item)}>
+              <span
+                className="cart--plus"
+                onClick={() => incHandler(item)}
+                style={{ cursor: "pointer" }}
+              >
                 +
               </span>
               <span className="cart--item-amount">{item.quantity}</span>
               <span
                 className="cart--trash"
                 onClick={() => decrementHandler(item)}
+                style={{ cursor: "pointer" }}
               >
                 <img src={trashImage} alt="trash green" />
               </span>
