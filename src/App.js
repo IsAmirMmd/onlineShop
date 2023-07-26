@@ -6,6 +6,8 @@ import CartProvider from "./Context/CartContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CheckoutPage from "./pages/checkoutPage";
+import LoginPage from "./pages/Login";
+import SignUpPage from "./pages/SignUp";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/cart" Component={CartPage} />
+            <Route path="/login" Component={LoginPage} />
+            <Route path="/signup" Component={SignUpPage} />
             <Route path="/checkout" Component={CheckoutPage} />
             <Route path="/" Component={HomePage} />
           </Routes>
