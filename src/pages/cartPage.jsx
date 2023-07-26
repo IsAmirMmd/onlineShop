@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart, useCartAction } from "../Context/CartContext";
 import Layout from "../Layout/Layout";
 import trashImage from "../assets/images/trash.svg";
@@ -96,6 +97,9 @@ const CartPage = () => {
                 <p>total Price </p>
                 <span className="price-unit">{total}</span>
               </div>
+              <Link style={{ width: "100%" }} to="/checkout">
+                <button className="btn primary">Go To Checkout</button>
+              </Link>
             </div>
           ) : (
             ""
