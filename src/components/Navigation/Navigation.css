@@ -28,3 +28,20 @@
 .mainNav a:hover {
   color: cadetblue;
 }
+.cart-holder {
+  position: relative;
+}
+.badge {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6d28d9;
+  width: 15px;
+  height: 15px;
+  font-size: 0.725rem;
+  border-radius: 50%;
+  color: #fff;
+  top: -5px;
+  right: -15px;
+}
