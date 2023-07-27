@@ -3,21 +3,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./LoginForm.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../Services/loginServices";
 // 1. init values
 const initialValues = {
   name: "",
   email: "",
   password: "",
   RePassword: "",
-};
-
-// 2. submit
-const onSubmit = (values) => {
-  console.log(values);
-  //   axios
-  //     .post("http://localhost:3001/users", values)
-  //     .then((res) => console.log(res.data))
-  //     .catch();
 };
 
 // 3. validate(using yup handler)
@@ -32,6 +25,22 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const [error, setError] = useState("");
+
+  const onSubmit = async (values) => {
+    const { email, password } = values;
+    const userData = {
+      email,
+      password,
+    };
+    try {
+      await loginUser(userData);
+      setError("");
+    } catch (error) {
+      if (error.response) setError(error.response.data.message);
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: true,
@@ -69,6 +78,8 @@ const LoginForm = () => {
       <button type="submit" className="btn primary" disabled={!formik.isValid}>
         Login
       </button>
+      {error && <p className="error-onForm">{error}</p>}
+
       <Link to="/signup" className="link">
         new user? <span>signup</span>
       </Link>
