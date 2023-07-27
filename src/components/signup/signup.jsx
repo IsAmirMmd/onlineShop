@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import "./signup.css";
 // 1. init values
 const initialValues = {
   name: "",
@@ -78,7 +78,7 @@ const SignUpForm = () => {
           <p className="error-onForm">{formik.errors.RePassword}</p>
         )}
       </div>
-      <button type="submit" disabled={!formik.isValid}>
+      <button type="submit" className="btn primary" disabled={!formik.isValid}>
         submit
       </button>
     </form>
