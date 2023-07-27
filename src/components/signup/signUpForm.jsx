@@ -2,6 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
+import { Link } from "react-router-dom";
 // 1. init values
 const initialValues = {
   name: "",
@@ -48,14 +49,24 @@ const SignUpForm = () => {
     <form onSubmit={formik.handleSubmit}>
       <div className="formControl">
         <label>name</label>
-        <input name="name" {...formik.getFieldProps("name")} type="text" />
+        <input
+          name="name"
+          {...formik.getFieldProps("name")}
+          type="text"
+          placeholder="enter your full name"
+        />
         {formik.errors.name && formik.touched.name && (
           <p className="error-onForm">{formik.errors.name}</p>
         )}
       </div>
       <div className="formControl">
         <label>email</label>
-        <input name="email" {...formik.getFieldProps("email")} type="text" />
+        <input
+          name="email"
+          {...formik.getFieldProps("email")}
+          type="email"
+          placeholder="email@ex.com"
+        />
         {formik.errors.email && formik.touched.email && (
           <p className="error-onForm">{formik.errors.email}</p>
         )}
@@ -65,7 +76,8 @@ const SignUpForm = () => {
         <input
           name="password"
           {...formik.getFieldProps("password")}
-          type="text"
+          type="password"
+          placeholder="enter your password"
         />
         {formik.errors.password && formik.touched.password && (
           <p className="error-onForm">{formik.errors.password}</p>
@@ -73,14 +85,22 @@ const SignUpForm = () => {
       </div>
       <div className="formControl">
         <label>enter password again</label>
-        <input name="P" {...formik.getFieldProps("RePassword")} type="text" />
+        <input
+          name="RePassword"
+          {...formik.getFieldProps("RePassword")}
+          type="password"
+          placeholder="confirm your password"
+        />
         {formik.errors.RePassword && formik.touched.RePassword && (
           <p className="error-onForm">{formik.errors.RePassword}</p>
         )}
       </div>
       <button type="submit" className="btn primary" disabled={!formik.isValid}>
-        submit
+        sign up
       </button>
+      <Link to="/login" className="link">
+        Already login? <span>Yes!</span>
+      </Link>
     </form>
   );
 };

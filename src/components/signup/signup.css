@@ -35,3 +35,13 @@ form {
   background-color: #ccc;
   color: #757575;
 }
+.link {
+  margin-top: 5px;
+  text-decoration: none;
+  float: left;
+  color: #353535;
+}
+.link span {
+  color: purple;
+  font-weight: 600;
+}
