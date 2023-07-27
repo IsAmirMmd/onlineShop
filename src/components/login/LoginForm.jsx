@@ -2,7 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./LoginForm.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../Services/loginServices";
 // 1. init values
@@ -27,6 +27,8 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [error, setError] = useState("");
 
+  const history = useNavigate();
+
   const onSubmit = async (values) => {
     const { email, password } = values;
     const userData = {
@@ -36,6 +38,7 @@ const LoginForm = () => {
     try {
       await loginUser(userData);
       setError("");
+      history("/");
     } catch (error) {
       if (error.response) setError(error.response.data.message);
     }

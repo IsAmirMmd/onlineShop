@@ -2,7 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signupUser } from "../Services/signupServices";
 // 1. init values
@@ -34,6 +34,7 @@ const validationSchema = Yup.object({
 const SignUpForm = () => {
   const [error, setError] = useState("");
 
+  const history = useNavigate();
   // 2. submit
   const onSubmit = async (values) => {
     const { name, email, password, phoneNumber } = values;
@@ -46,6 +47,7 @@ const SignUpForm = () => {
     try {
       const { data } = await signupUser(userData);
       setError("");
+      history("/");
     } catch (error) {
       setError(error.response.data.message);
     }
