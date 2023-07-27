@@ -1,9 +1,10 @@
 import Layout from "../Layout/Layout";
+import SignUpForm from "../components/signup/signup";
 
 const SignUpPage = () => {
   return (
     <Layout>
-      <div>sign up page</div>
+      <SignUpForm />
     </Layout>
   );
 };
