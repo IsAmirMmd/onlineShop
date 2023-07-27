@@ -3,27 +3,22 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { signupUser } from "../Services/signupServices";
 // 1. init values
 const initialValues = {
   name: "",
   email: "",
+  phoneNumber: "",
   password: "",
   RePassword: "",
-};
-
-// 2. submit
-const onSubmit = (values) => {
-  console.log(values);
-  //   axios
-  //     .post("http://localhost:3001/users", values)
-  //     .then((res) => console.log(res.data))
-  //     .catch();
 };
 
 // 3. validate(using yup handler)
 const validationSchema = Yup.object({
   name: Yup.string().required("Name is Required"),
   email: Yup.string().email("email format").required("email is Required"),
+  phoneNumber: Yup.number(),
   password: Yup.string()
     .required("password is Required")
     .matches(
@@ -37,6 +32,24 @@ const validationSchema = Yup.object({
 });
 
 const SignUpForm = () => {
+  const [error, setError] = useState("");
+
+  // 2. submit
+  const onSubmit = async (values) => {
+    const { name, email, password, phoneNumber } = values;
+    const userData = {
+      name,
+      email,
+      password,
+      phoneNumber,
+    };
+    try {
+      const { data } = await signupUser(userData);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: true,
@@ -72,6 +85,18 @@ const SignUpForm = () => {
         )}
       </div>
       <div className="formControl">
+        <label>phone number</label>
+        <input
+          name="phoneNumber"
+          {...formik.getFieldProps("phoneNumber")}
+          type="tel"
+          placeholder="09********"
+        />
+        {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+          <p className="error-onForm">{formik.errors.phoneNumber}</p>
+        )}
+      </div>
+      <div className="formControl">
         <label>password</label>
         <input
           name="password"
@@ -98,6 +123,7 @@ const SignUpForm = () => {
       <button type="submit" className="btn primary" disabled={!formik.isValid}>
         sign up
       </button>
+      {error && <p className="error-onForm">{error}</p>}
       <Link to="/login" className="link">
         Already login? <span>Yes!</span>
       </Link>
