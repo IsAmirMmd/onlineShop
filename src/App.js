@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CheckoutPage from "./pages/checkoutPage";
 import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/signup" Component={SignUpPage} />
             <Route path="/checkout" Component={CheckoutPage} />
             <Route path="/" Component={HomePage} />
+            <Route path="*" Component={NotFound} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
