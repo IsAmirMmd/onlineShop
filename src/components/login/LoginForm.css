@@ -1,0 +1,47 @@
+form {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 25px 10px;
+}
+.formControl {
+  min-width: 250px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: left;
+}
+.formControl :nth-child(2n) {
+  margin-top: 0.5rem;
+}
+.error-onForm {
+  color: red;
+  margin-bottom: 8px;
+  font-size: 0.825rem;
+}
+.formControl input {
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: all 0.3s ease-in-out;
+}
+.formControl input:focus {
+  border: 1px solid darkorchid;
+  box-shadow: 0 0 10px darkorchid;
+}
+.btn.primary:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: #757575;
+}
+.link {
+  margin-top: 5px;
+  text-decoration: none;
+  float: left;
+  color: #353535;
+}
+.link span {
+  color: purple;
+  font-weight: 600;
+}
