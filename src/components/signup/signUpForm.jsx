@@ -45,6 +45,7 @@ const SignUpForm = () => {
     };
     try {
       const { data } = await signupUser(userData);
+      setError("");
     } catch (error) {
       setError(error.response.data.message);
     }
