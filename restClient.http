@@ -4,7 +4,7 @@ POST http://localhost:5000/api/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "wahedm@gmail9.com",
+    "email": "amir@gmail.com",
     "password": "1234579444"
 }
 
@@ -14,10 +14,10 @@ POST http://localhost:5000/api/user/register HTTP/1.1
 content-type: application/json
 
 {
-    "email": "wahedm@gmail9.com",
+    "email": "amir@gmail.com",
     "password": "1234579444",
     "name":"wahed m",
-    "phoneNumber":"09182471500"
+    "phoneNumber":"091822471500"
 }
 
 
