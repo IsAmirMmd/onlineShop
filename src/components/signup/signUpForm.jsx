@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signupUser } from "../Services/signupServices";
-import { useAuthAction } from "../../Provider/Auth/AuthProvider";
+import { useAuth, useAuthAction } from "../../Provider/Auth/AuthProvider";
 // 1. init values
 const initialValues = {
   name: "",
@@ -36,9 +36,14 @@ const SignUpForm = () => {
   const [error, setError] = useState("");
 
   const setAuth = useAuthAction();
+  const Auth = useAuth();
 
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
+
+  useEffect(() => {
+    if (Auth) history("/" + redirect);
+  }, [Auth, redirect]);
 
   const history = useNavigate();
   // 2. submit
@@ -53,9 +58,9 @@ const SignUpForm = () => {
     try {
       const { data } = await signupUser(userData);
       setAuth(data);
-      localStorage.setItem("authToken", data.email);
+      localStorage.setItem("authToken", JSON.stringify(data));
       setError("");
-      history("/");
+      history("../" + redirect);
     } catch (error) {
       setError(error.response.data.message);
     }

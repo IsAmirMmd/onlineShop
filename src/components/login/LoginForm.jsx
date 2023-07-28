@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./LoginForm.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginUser } from "../Services/loginServices";
-import { useAuthAction } from "../../Provider/Auth/AuthProvider";
+import { useAuth, useAuthAction } from "../../Provider/Auth/AuthProvider";
 // 1. init values
 const initialValues = {
   name: "",
@@ -29,11 +29,16 @@ const LoginForm = () => {
   const [error, setError] = useState("");
 
   const setAuth = useAuthAction();
+  const Auth = useAuth();
 
   const history = useNavigate();
 
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
+
+  useEffect(() => {
+    if (Auth) history("/" + redirect);
+  }, [Auth, redirect]);
 
   const onSubmit = async (values) => {
     const { email, password } = values;
@@ -44,9 +49,9 @@ const LoginForm = () => {
     try {
       const { data } = await loginUser(userData);
       setAuth(data);
-      localStorage.setItem("authToken", data.email);
+      localStorage.setItem("authToken", JSON.stringify(data));
       setError("");
-      history(redirect);
+      history("../" + redirect);
     } catch (error) {
       if (error.response) setError(error.response.data.message);
     }
