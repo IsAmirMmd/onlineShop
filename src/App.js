@@ -10,6 +10,7 @@ import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
 import NotFound from "./components/NotFound/NotFound";
 import AuthProvider from "./Provider/Auth/AuthProvider";
+import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/cart" Component={CartPage} />
+              <Route path="/profile" Component={ProfilePage} />
               <Route path="/login" Component={LoginPage} />
               <Route path="/signup" Component={SignUpPage} />
               <Route path="/checkout" Component={CheckoutPage} />

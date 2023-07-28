@@ -50,7 +50,7 @@ const SignUpForm = () => {
     try {
       const { data } = await signupUser(userData);
       setAuth(data);
-      localStorage.setItem("authToken", data);
+      localStorage.setItem("authToken", data.email);
       setError("");
       history("/");
     } catch (error) {
