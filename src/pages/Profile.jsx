@@ -2,11 +2,11 @@ import Layout from "../Layout/Layout";
 import { useAuth } from "../Provider/Auth/AuthProvider";
 
 const ProfilePage = () => {
-  const userData = useAuth();
+  const userData = JSON.parse(useAuth());
   return (
     <Layout>
       <p>Profile data</p>
-      <p>{userData}</p>
+      <p>{userData.name}</p>
     </Layout>
   );
 };
