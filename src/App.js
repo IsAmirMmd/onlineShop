@@ -9,23 +9,26 @@ import CheckoutPage from "./pages/checkoutPage";
 import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
 import NotFound from "./components/NotFound/NotFound";
+import AuthProvider from "./Provider/Auth/AuthProvider";
 
 function App() {
   return (
     <div className="App">
-      <CartProvider>
-        <ToastContainer />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/cart" Component={CartPage} />
-            <Route path="/login" Component={LoginPage} />
-            <Route path="/signup" Component={SignUpPage} />
-            <Route path="/checkout" Component={CheckoutPage} />
-            <Route path="/" Component={HomePage} />
-            <Route path="*" Component={NotFound} />
-          </Routes>
-        </BrowserRouter>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <ToastContainer />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/cart" Component={CartPage} />
+              <Route path="/login" Component={LoginPage} />
+              <Route path="/signup" Component={SignUpPage} />
+              <Route path="/checkout" Component={CheckoutPage} />
+              <Route path="/" Component={HomePage} />
+              <Route path="*" Component={NotFound} />
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
     </div>
   );
 }

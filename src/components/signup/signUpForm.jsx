@@ -5,6 +5,7 @@ import "./signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signupUser } from "../Services/signupServices";
+import { useAuthAction } from "../../Provider/Auth/AuthProvider";
 // 1. init values
 const initialValues = {
   name: "",
@@ -34,6 +35,8 @@ const validationSchema = Yup.object({
 const SignUpForm = () => {
   const [error, setError] = useState("");
 
+  const setAuth = useAuthAction();
+
   const history = useNavigate();
   // 2. submit
   const onSubmit = async (values) => {
@@ -46,6 +49,8 @@ const SignUpForm = () => {
     };
     try {
       const { data } = await signupUser(userData);
+      setAuth(data);
+      localStorage.setItem("authToken", data);
       setError("");
       history("/");
     } catch (error) {

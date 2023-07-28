@@ -5,6 +5,7 @@ import "./LoginForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../Services/loginServices";
+import { useAuthAction } from "../../Provider/Auth/AuthProvider";
 // 1. init values
 const initialValues = {
   name: "",
@@ -27,6 +28,8 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [error, setError] = useState("");
 
+  const setAuth = useAuthAction();
+
   const history = useNavigate();
 
   const onSubmit = async (values) => {
@@ -36,7 +39,9 @@ const LoginForm = () => {
       password,
     };
     try {
-      await loginUser(userData);
+      const { data } = await loginUser(userData);
+      setAuth(data);
+      localStorage.setItem("authToken", data);
       setError("");
       history("/");
     } catch (error) {
