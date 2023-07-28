@@ -97,7 +97,7 @@ const CartPage = () => {
                 <p>total Price </p>
                 <span className="price-unit">{total}</span>
               </div>
-              <Link style={{ width: "100%" }} to="/checkout">
+              <Link style={{ width: "100%" }} to="/signup?redirect=checkout">
                 <button className="btn primary">Go To Checkout</button>
               </Link>
             </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { signupUser } from "../Services/signupServices";
 import { useAuthAction } from "../../Provider/Auth/AuthProvider";
@@ -36,6 +36,9 @@ const SignUpForm = () => {
   const [error, setError] = useState("");
 
   const setAuth = useAuthAction();
+
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
 
   const history = useNavigate();
   // 2. submit
@@ -132,7 +135,7 @@ const SignUpForm = () => {
         sign up
       </button>
       {error && <p className="error-onForm">{error}</p>}
-      <Link to="/login" className="link">
+      <Link to={`/login?redirect=${redirect}`} className="link">
         Already login? <span>Yes!</span>
       </Link>
     </form>

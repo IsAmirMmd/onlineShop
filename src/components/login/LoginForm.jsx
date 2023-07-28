@@ -2,7 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./LoginForm.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../Services/loginServices";
 import { useAuthAction } from "../../Provider/Auth/AuthProvider";
@@ -32,6 +32,9 @@ const LoginForm = () => {
 
   const history = useNavigate();
 
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
+
   const onSubmit = async (values) => {
     const { email, password } = values;
     const userData = {
@@ -43,7 +46,7 @@ const LoginForm = () => {
       setAuth(data);
       localStorage.setItem("authToken", data.email);
       setError("");
-      history("/");
+      history(redirect);
     } catch (error) {
       if (error.response) setError(error.response.data.message);
     }
@@ -88,7 +91,7 @@ const LoginForm = () => {
       </button>
       {error && <p className="error-onForm">{error}</p>}
 
-      <Link to="/signup" className="link">
+      <Link to={`/signup?redirect=${redirect}`} className="link">
         new user? <span>signup</span>
       </Link>
     </form>
